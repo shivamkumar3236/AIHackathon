@@ -1,5 +1,5 @@
 import React from 'react';
-import { Zap, Droplets, Trash2, ArrowUpRight, ArrowDownRight, Activity } from 'lucide-react';
+import { Zap, Droplets, Trash2, ArrowUpRight, ArrowDownRight } from 'lucide-react';
 
 export default function MetricCards({ stats }) {
   const electricity = stats?.electricity || {
@@ -35,13 +35,12 @@ export default function MetricCards({ stats }) {
       changePercent: electricity.changePercent,
       direction: electricity.direction,
       icon: Zap,
-      iconColor: 'text-amber-400',
-      iconBg: 'bg-amber-500/10 border-amber-500/30 shadow-[0_0_15px_rgba(251,191,36,0.15)]',
-      trendColor: 'text-rose-400',
-      trendBg: 'bg-rose-500/10 border-rose-500/25',
+      iconColor: 'text-amber-600',
+      iconBg: 'bg-amber-50 border-amber-200',
+      trendColor: 'text-rose-600',
+      trendBg: 'bg-rose-50 border-rose-200',
       trendText: `↑ ${electricity.changePercent}% (vs normal)`,
-      badge: 'Spike Detected',
-      glowColor: 'bg-amber-500/10'
+      badge: 'Spike Detected'
     },
     {
       id: 'water',
@@ -51,13 +50,12 @@ export default function MetricCards({ stats }) {
       changePercent: water.changePercent,
       direction: water.direction,
       icon: Droplets,
-      iconColor: 'text-cyan-400',
-      iconBg: 'bg-cyan-500/10 border-cyan-500/30 shadow-[0_0_15px_rgba(0,242,254,0.15)]',
-      trendColor: 'text-emerald-400',
-      trendBg: 'bg-emerald-500/10 border-emerald-500/25',
+      iconColor: 'text-blue-600',
+      iconBg: 'bg-blue-50 border-blue-200',
+      trendColor: 'text-emerald-600',
+      trendBg: 'bg-emerald-50 border-emerald-200',
       trendText: `↓ ${water.changePercent}% (vs normal)`,
-      badge: 'Optimal',
-      glowColor: 'bg-cyan-500/10'
+      badge: 'Optimal'
     },
     {
       id: 'waste',
@@ -67,13 +65,12 @@ export default function MetricCards({ stats }) {
       changePercent: waste.changePercent,
       direction: waste.direction,
       icon: Trash2,
-      iconColor: 'text-emerald-400',
-      iconBg: 'bg-emerald-500/10 border-emerald-500/30 shadow-[0_0_15px_rgba(16,185,129,0.15)]',
-      trendColor: 'text-amber-400',
-      trendBg: 'bg-amber-500/10 border-amber-500/25',
+      iconColor: 'text-emerald-600',
+      iconBg: 'bg-emerald-50 border-emerald-200',
+      trendColor: 'text-amber-600',
+      trendBg: 'bg-amber-50 border-amber-200',
       trendText: `↑ ${waste.changePercent}% (vs normal)`,
-      badge: 'Monitor',
-      glowColor: 'bg-emerald-500/10'
+      badge: 'Monitor'
     }
   ];
 
@@ -86,17 +83,14 @@ export default function MetricCards({ stats }) {
         return (
           <div
             key={card.id}
-            className="ai-glass-card rounded-2xl p-5 transition-all duration-300 relative overflow-hidden group hover:-translate-y-0.5"
+            className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm hover:shadow-md transition-all hover:border-slate-300 relative overflow-hidden"
           >
-            {/* Ambient corner glow */}
-            <div className={`absolute -top-12 -right-12 w-32 h-32 ${card.glowColor} rounded-full blur-3xl pointer-events-none group-hover:scale-150 transition-transform duration-500`} />
-
             <div className="flex items-center justify-between mb-3.5">
               <div className="flex items-center gap-3">
                 <div className={`p-2.5 rounded-xl border ${card.iconBg}`}>
                   <Icon className={`w-5 h-5 ${card.iconColor}`} />
                 </div>
-                <span className="font-bold text-slate-200 text-xs tracking-wide">
+                <span className="font-bold text-slate-700 text-xs tracking-wide">
                   {card.title}
                 </span>
               </div>
@@ -106,10 +100,10 @@ export default function MetricCards({ stats }) {
             </div>
 
             <div className="flex items-baseline gap-2 mt-2">
-              <span className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+              <span className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
                 {card.value}
               </span>
-              <span className="text-sm font-bold text-slate-400">
+              <span className="text-sm font-bold text-slate-500">
                 {card.unit}
               </span>
             </div>

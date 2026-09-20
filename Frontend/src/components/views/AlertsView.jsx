@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { AlertTriangle, CheckCircle, Clock, ShieldCheck, Zap, Droplets, Trash2, Sparkles } from 'lucide-react';
+import { AlertTriangle, CheckCircle, Clock, ShieldCheck, Zap, Droplets, Trash2 } from 'lucide-react';
 
 export default function AlertsView({ alerts, onResolveAlert, onSelectAlert }) {
   const [filterSeverity, setFilterSeverity] = useState('All');
@@ -18,30 +18,30 @@ export default function AlertsView({ alerts, onResolveAlert, onSelectAlert }) {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div>
-          <h2 className="text-xl font-bold text-white flex items-center gap-2">
-            <div className="p-1.5 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-400 shadow-[0_0_10px_rgba(244,63,94,0.2)]">
+          <h2 className="text-xl font-bold text-slate-900 flex items-center gap-2">
+            <div className="p-1.5 rounded-xl bg-rose-50 border border-rose-200 text-rose-600">
               <AlertTriangle className="w-5 h-5" />
             </div>
             <span>AI Anomaly Alerts Center</span>
           </h2>
-          <p className="text-xs text-slate-400 mt-0.5">
+          <p className="text-xs text-slate-500 mt-0.5">
             Real-time threshold and time-series spike detections (usage &gt; 1.5x baseline)
           </p>
         </div>
       </div>
 
       {/* Filter Tabs */}
-      <div className="ai-glass-card rounded-2xl p-4 flex flex-wrap items-center gap-3">
+      <div className="bg-white border border-slate-200 rounded-2xl p-4 flex flex-wrap items-center gap-3 shadow-sm">
         <div className="flex items-center gap-2 text-xs">
-          <span className="text-slate-400 font-semibold">Severity:</span>
+          <span className="text-slate-500 font-semibold">Severity:</span>
           {['All', 'Critical', 'High', 'Medium'].map((sev) => (
             <button
               key={sev}
               onClick={() => setFilterSeverity(sev)}
               className={`px-3 py-1 rounded-xl transition-all ${
                 filterSeverity === sev
-                  ? 'bg-rose-600 text-white font-bold shadow-[0_0_15px_rgba(244,63,94,0.3)]'
-                  : 'bg-white/[0.04] text-slate-300 hover:bg-white/[0.08]'
+                  ? 'bg-rose-600 text-white font-bold shadow-sm'
+                  : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
               }`}
             >
               {sev}
@@ -50,15 +50,15 @@ export default function AlertsView({ alerts, onResolveAlert, onSelectAlert }) {
         </div>
 
         <div className="flex items-center gap-2 text-xs ml-auto">
-          <span className="text-slate-400 font-semibold">Status:</span>
+          <span className="text-slate-500 font-semibold">Status:</span>
           {['All', 'Active', 'Resolved'].map((st) => (
             <button
               key={st}
               onClick={() => setFilterStatus(st)}
               className={`px-3 py-1 rounded-xl transition-all ${
                 filterStatus === st
-                  ? 'bg-emerald-600 text-white font-bold shadow-[0_0_15px_rgba(16,185,129,0.3)]'
-                  : 'bg-white/[0.04] text-slate-300 hover:bg-white/[0.08]'
+                  ? 'bg-emerald-600 text-white font-bold shadow-sm'
+                  : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
               }`}
             >
               {st}
@@ -70,9 +70,9 @@ export default function AlertsView({ alerts, onResolveAlert, onSelectAlert }) {
       {/* Alerts Cards List */}
       <div className="space-y-3">
         {filtered.length === 0 ? (
-          <div className="p-8 text-center ai-glass-card rounded-2xl">
-            <ShieldCheck className="w-10 h-10 text-emerald-400 mx-auto mb-2 shadow-[0_0_15px_rgba(16,185,129,0.3)]" />
-            <p className="text-sm font-semibold text-slate-200">No anomalies found matching your filter</p>
+          <div className="p-8 text-center bg-white border border-slate-200 rounded-2xl shadow-sm">
+            <ShieldCheck className="w-10 h-10 text-emerald-600 mx-auto mb-2" />
+            <p className="text-sm font-bold text-slate-800">No anomalies found matching your filter</p>
             <p className="text-xs text-slate-500 mt-1">All resource systems operating within normal parameters.</p>
           </div>
         ) : (
@@ -83,16 +83,16 @@ export default function AlertsView({ alerts, onResolveAlert, onSelectAlert }) {
                 key={alert.id || alert._id}
                 className={`p-5 rounded-2xl border transition-all ${
                   isResolved
-                    ? 'ai-glass opacity-60 border-white/[0.06]'
-                    : 'ai-glass border-rose-500/30 hover:border-rose-500/50 shadow-[0_0_20px_rgba(244,63,94,0.1)]'
+                    ? 'bg-slate-50 border-slate-200 opacity-70'
+                    : 'bg-rose-50/70 border-rose-200 shadow-sm'
                 }`}
               >
                 <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
                   <div className="flex items-start gap-3">
                     <div className={`p-2.5 rounded-xl border shrink-0 ${
                       isResolved
-                        ? 'bg-white/[0.04] border-white/[0.08] text-slate-400'
-                        : 'bg-rose-500/20 border-rose-500/40 text-rose-400 shadow-[0_0_10px_rgba(244,63,94,0.2)]'
+                        ? 'bg-slate-100 border-slate-200 text-slate-500'
+                        : 'bg-rose-100 border-rose-300 text-rose-600'
                     }`}>
                       {alert.resourceType === 'Electricity' ? (
                         <Zap className="w-5 h-5" />
@@ -106,14 +106,14 @@ export default function AlertsView({ alerts, onResolveAlert, onSelectAlert }) {
                       <div className="flex items-center gap-2 mb-1 flex-wrap">
                         <span className={`text-[10px] font-extrabold px-2 py-0.5 rounded-full uppercase tracking-wider ${
                           alert.severity === 'Critical'
-                            ? 'bg-red-500/20 text-red-300 border border-red-500/40'
+                            ? 'bg-red-100 text-red-800 border border-red-300'
                             : alert.severity === 'High'
-                            ? 'bg-rose-500/20 text-rose-300 border border-rose-500/40'
-                            : 'bg-amber-500/20 text-amber-300 border border-amber-500/40'
+                            ? 'bg-rose-100 text-rose-800 border border-rose-300'
+                            : 'bg-amber-100 text-amber-800 border border-amber-300'
                         }`}>
                           {alert.severity || 'High'}
                         </span>
-                        <span className="text-xs font-semibold text-slate-300">
+                        <span className="text-xs font-bold text-slate-800">
                           {alert.building || 'Campus'}
                         </span>
                         <span className="text-xs text-slate-500 flex items-center gap-1">
@@ -122,11 +122,11 @@ export default function AlertsView({ alerts, onResolveAlert, onSelectAlert }) {
                         </span>
                       </div>
 
-                      <p className="text-sm font-bold text-white mt-1">
+                      <p className="text-sm font-bold text-slate-900 mt-1">
                         {alert.message}
                       </p>
 
-                      <p className="text-xs text-slate-400 mt-1">
+                      <p className="text-xs text-slate-600 mt-1">
                         AI Recommended Action: {alert.suggestedAction || 'Check HVAC schedules and reduce excess load.'}
                       </p>
                     </div>
@@ -136,14 +136,14 @@ export default function AlertsView({ alerts, onResolveAlert, onSelectAlert }) {
                   <div className="flex items-center gap-2 self-end sm:self-center shrink-0">
                     <button
                       onClick={() => onSelectAlert(alert)}
-                      className="px-3.5 py-1.5 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] text-slate-200 text-xs font-semibold transition-all border border-white/[0.08]"
+                      className="px-3.5 py-1.5 rounded-xl bg-white hover:bg-slate-50 text-slate-700 text-xs font-semibold transition-all border border-slate-200 shadow-sm"
                     >
                       Inspect
                     </button>
                     {!isResolved && (
                       <button
                         onClick={() => onResolveAlert(alert.id || alert._id)}
-                        className="px-3.5 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition-all shadow-[0_0_15px_rgba(16,185,129,0.3)] flex items-center gap-1"
+                        className="px-3.5 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-all shadow-sm flex items-center gap-1"
                       >
                         <CheckCircle className="w-3.5 h-3.5" />
                         <span>Resolve</span>

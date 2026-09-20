@@ -37,26 +37,26 @@ export default function CostSavingCalculatorModal({ isOpen, onClose }) {
   );
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm animate-in fade-in duration-200">
-      <div className="bg-slate-900 border border-slate-700 rounded-3xl max-w-2xl w-full p-6 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm animate-in fade-in duration-200">
+      <div className="bg-white border border-slate-200 rounded-3xl max-w-2xl w-full p-6 shadow-2xl relative max-h-[90vh] overflow-y-auto">
         {/* Close button */}
         <button
           onClick={onClose}
-          className="absolute top-5 right-5 p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+          className="absolute top-5 right-5 p-1.5 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors"
         >
           <X className="w-5 h-5" />
         </button>
 
         {/* Title */}
         <div className="flex items-center gap-3 mb-6">
-          <div className="w-11 h-11 rounded-2xl bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
+          <div className="w-11 h-11 rounded-2xl bg-emerald-100 border border-emerald-300 flex items-center justify-center text-emerald-800">
             <IndianRupee className="w-6 h-6" />
           </div>
           <div>
-            <h3 className="text-xl font-extrabold text-white">
+            <h3 className="text-xl font-extrabold text-slate-900">
               Campus Cost & Saving Calculator
             </h3>
-            <p className="text-xs text-slate-400">
+            <p className="text-xs text-slate-500">
               Interactive financial and carbon footprint simulation
             </p>
           </div>
@@ -64,29 +64,29 @@ export default function CostSavingCalculatorModal({ isOpen, onClose }) {
 
         {/* Impact Summary Highlight */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6">
-          <div className="p-4 rounded-2xl bg-slate-950 border border-slate-800">
-            <span className="text-xs text-slate-400 block mb-1">Current Monthly Cost</span>
-            <span className="text-xl font-extrabold text-slate-200">
+          <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200">
+            <span className="text-xs text-slate-500 block mb-1">Current Monthly Cost</span>
+            <span className="text-xl font-extrabold text-slate-900">
               ₹{Math.round(totalCurrentCost).toLocaleString('en-IN')}
             </span>
           </div>
 
-          <div className="p-4 rounded-2xl bg-emerald-950/30 border border-emerald-500/30">
-            <span className="text-xs text-emerald-400 block mb-1">Estimated Savings</span>
-            <span className="text-xl font-extrabold text-emerald-400">
+          <div className="p-4 rounded-2xl bg-emerald-50 border border-emerald-200">
+            <span className="text-xs text-emerald-700 block mb-1">Estimated Savings</span>
+            <span className="text-xl font-extrabold text-emerald-700">
               ₹{Math.round(totalSavings).toLocaleString('en-IN')}
             </span>
-            <span className="text-[10px] text-emerald-300 font-semibold block mt-0.5">
+            <span className="text-[10px] text-emerald-600 font-semibold block mt-0.5">
               (~{Math.round((totalSavings / totalCurrentCost) * 100)}% reduction)
             </span>
           </div>
 
-          <div className="p-4 rounded-2xl bg-teal-950/30 border border-teal-500/30">
-            <span className="text-xs text-teal-400 block mb-1">CO₂ Emissions Saved</span>
-            <span className="text-xl font-extrabold text-teal-300">
+          <div className="p-4 rounded-2xl bg-teal-50 border border-teal-200">
+            <span className="text-xs text-teal-700 block mb-1">CO₂ Emissions Saved</span>
+            <span className="text-xl font-extrabold text-teal-700">
               {co2SavedKg} kg
             </span>
-            <span className="text-[10px] text-teal-400 block mt-0.5">
+            <span className="text-[10px] text-teal-600 block mt-0.5">
               ≈ {Math.round(co2SavedKg / 20)} trees planted / month
             </span>
           </div>
@@ -94,15 +94,15 @@ export default function CostSavingCalculatorModal({ isOpen, onClose }) {
 
         {/* Sliders for Resource Targets */}
         <div className="space-y-4 mb-6">
-          <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400">
+          <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500">
             Adjust Optimization Targets
           </h4>
 
           {/* Electricity Target */}
-          <div className="p-3.5 rounded-xl bg-slate-950/80 border border-slate-800">
+          <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
             <div className="flex justify-between text-xs mb-2">
-              <span className="font-semibold text-slate-300">Electricity Conservation Goal</span>
-              <span className="font-bold text-amber-400">{elecReduction}% (Save ₹{Math.round(elecSaving).toLocaleString('en-IN')})</span>
+              <span className="font-semibold text-slate-700">Electricity Conservation Goal</span>
+              <span className="font-bold text-amber-700">{elecReduction}% (Save ₹{Math.round(elecSaving).toLocaleString('en-IN')})</span>
             </div>
             <input
               type="range"
@@ -110,7 +110,7 @@ export default function CostSavingCalculatorModal({ isOpen, onClose }) {
               max="40"
               value={elecReduction}
               onChange={(e) => setElecReduction(Number(e.target.value))}
-              className="w-full accent-amber-400 cursor-pointer"
+              className="w-full accent-amber-500 cursor-pointer"
             />
             <div className="flex justify-between text-[10px] text-slate-500 mt-1">
               <span>5% (Basic Dimming)</span>
@@ -120,10 +120,10 @@ export default function CostSavingCalculatorModal({ isOpen, onClose }) {
           </div>
 
           {/* Water Target */}
-          <div className="p-3.5 rounded-xl bg-slate-950/80 border border-slate-800">
+          <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
             <div className="flex justify-between text-xs mb-2">
-              <span className="font-semibold text-slate-300">Water Conservation Goal</span>
-              <span className="font-bold text-cyan-400">{waterReduction}% (Save ₹{Math.round(waterSaving).toLocaleString('en-IN')})</span>
+              <span className="font-semibold text-slate-700">Water Conservation Goal</span>
+              <span className="font-bold text-blue-700">{waterReduction}% (Save ₹{Math.round(waterSaving).toLocaleString('en-IN')})</span>
             </div>
             <input
               type="range"
@@ -131,7 +131,7 @@ export default function CostSavingCalculatorModal({ isOpen, onClose }) {
               max="35"
               value={waterReduction}
               onChange={(e) => setWaterReduction(Number(e.target.value))}
-              className="w-full accent-cyan-400 cursor-pointer"
+              className="w-full accent-blue-500 cursor-pointer"
             />
             <div className="flex justify-between text-[10px] text-slate-500 mt-1">
               <span>5% (Flow restrictors)</span>
@@ -141,10 +141,10 @@ export default function CostSavingCalculatorModal({ isOpen, onClose }) {
           </div>
 
           {/* Waste Target */}
-          <div className="p-3.5 rounded-xl bg-slate-950/80 border border-slate-800">
+          <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
             <div className="flex justify-between text-xs mb-2">
-              <span className="font-semibold text-slate-300">Waste Reduction & Composting Goal</span>
-              <span className="font-bold text-emerald-400">{wasteReduction}% (Save ₹{Math.round(wasteSaving).toLocaleString('en-IN')})</span>
+              <span className="font-semibold text-slate-700">Waste Reduction & Composting Goal</span>
+              <span className="font-bold text-emerald-700">{wasteReduction}% (Save ₹{Math.round(wasteSaving).toLocaleString('en-IN')})</span>
             </div>
             <input
               type="range"
@@ -152,7 +152,7 @@ export default function CostSavingCalculatorModal({ isOpen, onClose }) {
               max="40"
               value={wasteReduction}
               onChange={(e) => setWasteReduction(Number(e.target.value))}
-              className="w-full accent-emerald-400 cursor-pointer"
+              className="w-full accent-emerald-600 cursor-pointer"
             />
             <div className="flex justify-between text-[10px] text-slate-500 mt-1">
               <span>5% (Segregation)</span>
@@ -163,10 +163,10 @@ export default function CostSavingCalculatorModal({ isOpen, onClose }) {
         </div>
 
         {/* Action Button */}
-        <div className="flex justify-end gap-3 pt-4 border-t border-slate-800">
+        <div className="flex justify-end gap-3 pt-4 border-t border-slate-100">
           <button
             onClick={onClose}
-            className="px-5 py-2.5 rounded-xl text-xs font-bold bg-emerald-600 hover:bg-emerald-500 text-white shadow-lg shadow-emerald-600/30 transition-all"
+            className="px-5 py-2.5 rounded-xl text-xs font-bold bg-emerald-600 hover:bg-emerald-700 text-white shadow-md shadow-emerald-600/20 transition-all"
           >
             Apply Optimization Goals
           </button>

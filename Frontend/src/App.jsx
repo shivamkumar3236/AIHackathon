@@ -101,11 +101,7 @@ export default function App() {
   const featuredAlert = activeAlerts.length > 0 ? activeAlerts[0] : (alerts[0] || null);
 
   return (
-    <div className="flex min-h-screen ai-mesh-bg text-slate-100 antialiased selection:bg-emerald-500/30 selection:text-emerald-200">
-      {/* Ambient background glows for AI atmosphere */}
-      <div className="fixed top-0 left-64 w-[500px] h-[500px] bg-cyan-500/[0.04] rounded-full blur-3xl pointer-events-none -z-10" />
-      <div className="fixed bottom-0 right-0 w-[600px] h-[600px] bg-emerald-500/[0.03] rounded-full blur-3xl pointer-events-none -z-10" />
-
+    <div className="flex min-h-screen bg-slate-50 text-slate-800 antialiased selection:bg-emerald-500 selection:text-white">
       {/* Left Sidebar */}
       <Sidebar
         activeTab={activeTab}
