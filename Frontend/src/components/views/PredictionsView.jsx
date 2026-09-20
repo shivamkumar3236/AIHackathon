@@ -1,5 +1,5 @@
 import React from 'react';
-import { TrendingUp, Zap, Droplets, Trash2, Calendar, CheckCircle2, ArrowUpRight, ArrowDownRight, Minus } from 'lucide-react';
+import { TrendingUp, Zap, Droplets, Trash2, Calendar, CheckCircle2, ArrowUpRight, ArrowDownRight, Minus, Sparkles } from 'lucide-react';
 
 export default function PredictionsView({ predictions }) {
   const data = predictions || {
@@ -18,8 +18,9 @@ export default function PredictionsView({ predictions }) {
       historicalAvg: 680,
       icon: Zap,
       color: 'text-amber-400',
-      border: 'border-amber-500/20',
-      bg: 'bg-amber-500/10'
+      border: 'border-amber-500/30',
+      bg: 'bg-amber-500/10',
+      glow: 'bg-amber-500/10'
     },
     {
       type: 'Water',
@@ -30,8 +31,9 @@ export default function PredictionsView({ predictions }) {
       historicalAvg: 2550,
       icon: Droplets,
       color: 'text-cyan-400',
-      border: 'border-cyan-500/20',
-      bg: 'bg-cyan-500/10'
+      border: 'border-cyan-500/30',
+      bg: 'bg-cyan-500/10',
+      glow: 'bg-cyan-500/10'
     },
     {
       type: 'Waste',
@@ -42,8 +44,9 @@ export default function PredictionsView({ predictions }) {
       historicalAvg: 335,
       icon: Trash2,
       color: 'text-emerald-400',
-      border: 'border-emerald-500/20',
-      bg: 'bg-emerald-500/10'
+      border: 'border-emerald-500/30',
+      bg: 'bg-emerald-500/10',
+      glow: 'bg-emerald-500/10'
     }
   ];
 
@@ -51,10 +54,12 @@ export default function PredictionsView({ predictions }) {
     <div className="space-y-6">
       <div>
         <h2 className="text-xl font-bold text-white flex items-center gap-2">
-          <TrendingUp className="w-5 h-5 text-blue-400" />
+          <div className="p-1.5 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 shadow-[0_0_10px_rgba(0,242,254,0.2)]">
+            <TrendingUp className="w-5 h-5" />
+          </div>
           <span>AI Time-Series Consumption Forecast</span>
         </h2>
-        <p className="text-xs text-slate-400">
+        <p className="text-xs text-slate-400 mt-0.5">
           Next week resource projection generated via rolling 7-day weighted linear regression
         </p>
       </div>
@@ -68,8 +73,10 @@ export default function PredictionsView({ predictions }) {
           return (
             <div
               key={c.type}
-              className="bg-slate-900/90 border border-slate-800 rounded-2xl p-5 shadow-lg flex flex-col justify-between"
+              className="ai-glass-card rounded-2xl p-5 shadow-lg flex flex-col justify-between relative overflow-hidden group hover:-translate-y-0.5 transition-all"
             >
+              <div className={`absolute -top-10 -right-10 w-28 h-28 ${c.glow} rounded-full blur-2xl pointer-events-none group-hover:scale-125 transition-transform`} />
+
               <div>
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center gap-2.5">
@@ -78,7 +85,7 @@ export default function PredictionsView({ predictions }) {
                     </div>
                     <span className="font-bold text-slate-200 text-sm">{c.type} Forecast</span>
                   </div>
-                  <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-slate-800 text-slate-400 border border-slate-700">
+                  <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-white/[0.04] text-slate-400 border border-white/[0.08]">
                     Next 7 Days
                   </span>
                 </div>
@@ -87,7 +94,7 @@ export default function PredictionsView({ predictions }) {
                   <span className="text-3xl font-extrabold text-white tracking-tight">
                     {c.val.toLocaleString()}
                   </span>
-                  <span className="text-sm font-semibold text-slate-400">
+                  <span className="text-sm font-bold text-slate-400">
                     {c.unit}
                   </span>
                 </div>
@@ -113,14 +120,17 @@ export default function PredictionsView({ predictions }) {
               </div>
 
               {/* Progress Confidence bar */}
-              <div className="mt-5 pt-3 border-t border-slate-800/80">
-                <div className="flex justify-between text-[11px] mb-1">
-                  <span className="text-slate-400">Model Confidence</span>
-                  <span className="text-emerald-400 font-bold">{c.confidence}%</span>
+              <div className="mt-5 pt-3 border-t border-white/[0.06]">
+                <div className="flex justify-between text-[11px] mb-1.5">
+                  <span className="text-slate-400 flex items-center gap-1">
+                    <Sparkles className="w-3 h-3 text-cyan-400" />
+                    <span>Model Confidence</span>
+                  </span>
+                  <span className="text-cyan-400 font-bold">{c.confidence}%</span>
                 </div>
-                <div className="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
+                <div className="w-full h-1.5 bg-black/40 rounded-full overflow-hidden border border-white/[0.06]">
                   <div
-                    className="h-full bg-emerald-500 rounded-full"
+                    className="h-full bg-gradient-to-r from-cyan-500 to-emerald-400 rounded-full shadow-[0_0_8px_rgba(0,242,254,0.6)]"
                     style={{ width: `${c.confidence}%` }}
                   />
                 </div>
@@ -131,8 +141,11 @@ export default function PredictionsView({ predictions }) {
       </div>
 
       {/* Model explanation card */}
-      <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-5">
-        <h3 className="font-bold text-white text-sm mb-2">How the Prediction Engine Works</h3>
+      <div className="ai-glass-card rounded-2xl p-5">
+        <h3 className="font-bold text-white text-sm mb-2 flex items-center gap-2">
+          <Sparkles className="w-4 h-4 text-cyan-400" />
+          <span>How the AI Prediction Engine Works</span>
+        </h3>
         <p className="text-xs text-slate-400 leading-relaxed">
           The forecast calculates a 7-day weighted moving average with dynamic trend velocity detection. If usage spikes occur during peak daytime hours (e.g. Block A HVAC surges), the model flags the divergence and factors upcoming class schedules into the projected load.
         </p>

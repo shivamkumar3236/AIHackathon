@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Lightbulb, IndianRupee, CheckCircle2, Clock, Zap, Droplets, Trash2, ArrowRight } from 'lucide-react';
+import { Lightbulb, IndianRupee, CheckCircle2, Clock, Zap, Droplets, Trash2, Sparkles } from 'lucide-react';
 
 export default function RecommendationsView({ recommendations, onStatusChange }) {
   const [items, setItems] = useState(recommendations || []);
@@ -24,15 +24,17 @@ export default function RecommendationsView({ recommendations, onStatusChange })
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div>
           <h2 className="text-xl font-bold text-white flex items-center gap-2">
-            <Lightbulb className="w-5 h-5 text-emerald-400" />
+            <div className="p-1.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 shadow-[0_0_10px_rgba(16,185,129,0.2)]">
+              <Lightbulb className="w-5 h-5" />
+            </div>
             <span>AI Energy & Resource Conservation Recommendations</span>
           </h2>
-          <p className="text-xs text-slate-400">
+          <p className="text-xs text-slate-400 mt-0.5">
             Intelligent recommendations derived from consumption patterns to reduce campus waste
           </p>
         </div>
 
-        <div className="px-4 py-2 rounded-xl bg-emerald-950/40 border border-emerald-500/30 text-xs flex items-center gap-2">
+        <div className="px-4 py-2 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-xs flex items-center gap-2 shadow-[0_0_15px_rgba(16,185,129,0.2)]">
           <span className="text-slate-300">Total Potential Savings:</span>
           <span className="font-extrabold text-emerald-400 text-sm">
             ₹{totalEstimated.toLocaleString('en-IN')}/mo
@@ -50,18 +52,18 @@ export default function RecommendationsView({ recommendations, onStatusChange })
               key={rec.id}
               className={`p-5 rounded-2xl border transition-all ${
                 isImplemented
-                  ? 'bg-slate-900/60 border-slate-800'
-                  : 'bg-slate-900/90 border-slate-800 hover:border-slate-700 shadow-lg'
+                  ? 'ai-glass border-white/[0.06] opacity-70'
+                  : 'ai-glass-card hover:border-emerald-500/40 shadow-lg'
               }`}
             >
               <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
                 <div className="flex items-start gap-3">
                   <div className={`p-2.5 rounded-xl border shrink-0 ${
                     rec.resourceType === 'Electricity'
-                      ? 'bg-amber-500/10 border-amber-500/20 text-amber-400'
+                      ? 'bg-amber-500/10 border-amber-500/30 text-amber-400'
                       : rec.resourceType === 'Water'
-                      ? 'bg-cyan-500/10 border-cyan-500/20 text-cyan-400'
-                      : 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400'
+                      ? 'bg-cyan-500/10 border-cyan-500/30 text-cyan-400'
+                      : 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400'
                   }`}>
                     {rec.resourceType === 'Electricity' ? (
                       <Zap className="w-5 h-5" />
@@ -76,10 +78,10 @@ export default function RecommendationsView({ recommendations, onStatusChange })
                     <div className="flex items-center gap-2 mb-1.5 flex-wrap">
                       <span className={`text-[10px] font-extrabold px-2 py-0.5 rounded-full uppercase tracking-wider ${
                         rec.impact === 'High'
-                          ? 'bg-rose-500/20 text-rose-300 border border-rose-500/30'
+                          ? 'bg-rose-500/20 text-rose-300 border border-rose-500/40'
                           : rec.impact === 'Medium'
-                          ? 'bg-amber-500/20 text-amber-300 border border-amber-500/30'
-                          : 'bg-blue-500/20 text-blue-300 border border-blue-500/30'
+                          ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40'
+                          : 'bg-blue-500/20 text-blue-300 border border-blue-500/40'
                       }`}>
                         {rec.impact} Impact
                       </span>
@@ -108,8 +110,8 @@ export default function RecommendationsView({ recommendations, onStatusChange })
                     onClick={() => handleToggle(rec.id)}
                     className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${
                       isImplemented
-                        ? 'bg-slate-800 text-emerald-400 border border-emerald-500/40 hover:bg-slate-750'
-                        : 'bg-emerald-600 hover:bg-emerald-500 text-white shadow-md shadow-emerald-600/30'
+                        ? 'bg-white/[0.04] text-emerald-400 border border-emerald-500/40 hover:bg-white/[0.08]'
+                        : 'bg-emerald-600 hover:bg-emerald-500 text-white shadow-[0_0_15px_rgba(16,185,129,0.3)]'
                     }`}
                   >
                     <CheckCircle2 className="w-4 h-4" />
