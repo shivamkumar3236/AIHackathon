@@ -101,8 +101,8 @@ export default function App() {
   const featuredAlert = activeAlerts.length > 0 ? activeAlerts[0] : (alerts[0] || null);
 
   return (
-    <div className="flex min-h-screen bg-slate-50 text-slate-800 antialiased selection:bg-emerald-500 selection:text-white">
-      {/* Left Sidebar */}
+    <div className="min-h-screen bg-slate-50 text-slate-800 antialiased selection:bg-emerald-500 selection:text-white flex flex-col">
+      {/* Horizontal Top Navigation Bar */}
       <Sidebar
         activeTab={activeTab}
         setActiveTab={(tab) => {
@@ -116,7 +116,7 @@ export default function App() {
       />
 
       {/* Main Content Area */}
-      <main className="flex-1 flex flex-col min-w-0 p-4 sm:p-6 lg:p-8 overflow-y-auto max-h-screen">
+      <main className="flex-1 p-4 sm:p-6 lg:p-8 max-w-7xl mx-auto w-full">
         <Header
           onOpenSimulate={() => setIsSimulateOpen(true)}
           onSeedData={handleSeed}
