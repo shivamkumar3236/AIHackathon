@@ -133,19 +133,21 @@ export default function App() {
             {/* Top 3 Metric Cards */}
             <MetricCards stats={stats} />
 
-            {/* Middle Row: 7 Days Usage Chart + Anomaly Detected Banner & AI Video Shorts */}
+            {/* Middle Row: 7 Days Usage Chart + Anomaly Detected Banner */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
               <div className="lg:col-span-2">
                 <UsageChart chartData={chartData} />
               </div>
-              <div className="lg:col-span-1 space-y-6">
+              <div className="lg:col-span-1">
                 <AnomalyBanner
                   alert={featuredAlert}
                   onViewDetails={(a) => setSelectedAlert(a)}
                 />
-                <AiVideoShortsCard />
               </div>
             </div>
+
+            {/* Campus AI Video Shorts & IoT Video Reel Section */}
+            <AiVideoShortsCard />
 
             {/* Bottom 3 Cards: Prediction, AI Recommendation, Estimated Saving */}
             <BottomCards
