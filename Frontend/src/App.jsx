@@ -9,6 +9,7 @@ import AnomalyDetailModal from './components/AnomalyDetailModal';
 import CostSavingCalculatorModal from './components/CostSavingCalculatorModal';
 import SimulateDataModal from './components/SimulateDataModal';
 import AuthModal from './components/AuthModal';
+import AiVideoShortsCard from './components/AiVideoShortsCard';
 
 import ResourcesView from './components/views/ResourcesView';
 import AlertsView from './components/views/AlertsView';
@@ -132,16 +133,17 @@ export default function App() {
             {/* Top 3 Metric Cards */}
             <MetricCards stats={stats} />
 
-            {/* Middle Row: 7 Days Usage Chart + Anomaly Detected Banner */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+            {/* Middle Row: 7 Days Usage Chart + Anomaly Detected Banner & AI Video Shorts */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
               <div className="lg:col-span-2">
                 <UsageChart chartData={chartData} />
               </div>
-              <div className="lg:col-span-1">
+              <div className="lg:col-span-1 space-y-6">
                 <AnomalyBanner
                   alert={featuredAlert}
                   onViewDetails={(a) => setSelectedAlert(a)}
                 />
+                <AiVideoShortsCard />
               </div>
             </div>
 
