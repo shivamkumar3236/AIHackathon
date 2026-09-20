@@ -83,13 +83,18 @@ export default function AnomalyDetailModal({ alert, onClose, onResolve }) {
           >
             Close
           </button>
-          {!alert.resolved && (
+          {alert.resolved ? (
+            <div className="px-4 py-2 rounded-xl text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-300 flex items-center gap-1.5">
+              <CheckCircle className="w-4 h-4 text-emerald-600" />
+              <span>Policy Applied & Resolved</span>
+            </div>
+          ) : (
             <button
               onClick={() => {
-                onResolve(alert.id || alert._id);
+                onResolve(alert.id || alert._id || 'alert-elec-default');
                 onClose();
               }}
-              className="px-4 py-2 rounded-xl text-xs font-bold bg-emerald-600 hover:bg-emerald-700 text-white shadow-md shadow-emerald-600/20 flex items-center gap-1.5 transition-all"
+              className="px-4 py-2 rounded-xl text-xs font-bold bg-emerald-600 hover:bg-emerald-700 text-white shadow-md shadow-emerald-600/20 flex items-center gap-1.5 transition-all cursor-pointer"
             >
               <CheckCircle className="w-4 h-4" />
               <span>Resolve & Apply Policy</span>

@@ -66,6 +66,7 @@ function detectAnomalies(resources, includeDefaultFallback = false) {
 
     if (ratio >= 1.5) {
       anomalies.push({
+        id: `alert-${latest.resourceType.toLowerCase()}-${Date.now()}`,
         resourceType: latest.resourceType,
         building: latest.building,
         currentValue: latest.value,
@@ -75,10 +76,12 @@ function detectAnomalies(resources, includeDefaultFallback = false) {
         severity: ratio >= 1.8 ? 'Critical' : 'High',
         message: `${latest.building} ${latest.resourceType.toLowerCase()} usage is ${percentDiff}% higher than normal.`,
         timestamp: latest.timestamp,
-        suggestedAction: `Inspect HVAC and equipment in ${latest.building} immediately to prevent excess surge charges.`
+        suggestedAction: `Inspect HVAC and equipment in ${latest.building} immediately to prevent excess surge charges.`,
+        resolved: false
       });
     } else if (ratio >= 1.2) {
       anomalies.push({
+        id: `alert-${latest.resourceType.toLowerCase()}-${Date.now()}`,
         resourceType: latest.resourceType,
         building: latest.building,
         currentValue: latest.value,
@@ -88,7 +91,8 @@ function detectAnomalies(resources, includeDefaultFallback = false) {
         severity: 'Medium',
         message: `${latest.building} ${latest.resourceType.toLowerCase()} usage is ${percentDiff}% higher than normal.`,
         timestamp: latest.timestamp,
-        suggestedAction: `Check thermostat and lighting schedules in ${latest.building}.`
+        suggestedAction: `Check thermostat and lighting schedules in ${latest.building}.`,
+        resolved: false
       });
     }
   });
@@ -158,6 +162,7 @@ function checkSingleReadingAnomaly(reading, historical = []) {
 
 function getDefaultAnomaly() {
   return {
+    id: 'alert-elec-default',
     resourceType: 'Electricity',
     building: 'Block A',
     currentValue: 180,
@@ -167,7 +172,8 @@ function getDefaultAnomaly() {
     severity: 'High',
     message: 'Block A electricity usage is 23% higher than normal.',
     timestamp: new Date(),
-    suggestedAction: 'Reduce AC usage between 2-5 PM in Block A.'
+    suggestedAction: 'Reduce AC usage between 2-5 PM in Block A.',
+    resolved: false
   };
 }
 
